@@ -6,8 +6,9 @@ export const getUsersForSidebar = async (req,res) =>{
         const loggedInUserId = req.user._id;
 
         const allUsersExceptYou = await User.find({_id:{$ne:loggedInUserId}}).select("-password");
-
+        // console.log(allUsersExceptYou)
         res.status(200).json(allUsersExceptYou)
+        
         
     } catch (error) {
         console.log("error in getUsersForSidebar controller:", error.message);
